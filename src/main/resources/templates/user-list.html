@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div align="center" th:switch="${users}">
+    <h2 style="text-align:center">List of users</h2>
+    <table border="2">
+        <thead>
+        <tr>
+            <th>"  ID  "</th>
+            <th>" FIRST NAME "</th>
+            <th>" LAST NAME "</th>
+        </tr>
+        </thead>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td>
+                <button><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></button>
+            </td>
+        </tr>
+    </table>
+    <form action="/user-create" target="_blank">
+        <button type="submit">Create user</button>
+    </form>
+</div>
+</body>
+</html>
